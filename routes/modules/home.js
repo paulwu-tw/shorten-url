@@ -30,32 +30,31 @@ router.post('/', (req, res) => {
     const serverUrl = req.protocol + '://' + req.get('host')
     const oriUrl = req.body.oriUrl
     let shortUrl = ''
-    console.log('oriUrl: ', oriUrl)
     shortUrlModel.findOne({ oriUrl })
         .lean()
         .then(isExist => {
-            console.log('isExist: ', isExist.shortUrl)
-            if (isExist) shortUrl = serverUrl + '/' + isExist.shortUrl
+            if (isExist) shortUrl = isExist.shortUrl
             else {
-                shortUrl = serverUrl + '/' + shorten()
+                shortUrl = shorten()
                 shortUrlModel.create({ oriUrl, shortUrl })
                     .catch(err => console.log(err))
             }
+            shortUrl = serverUrl + '/' + shortUrl
             res.render('index', { shortUrl })
         }).catch(err => console.log(err))
 
 })
 
 // get short url, redirect to original url
-// router.get('/:shortUrl', (req, res) => {
-//     const shortUrl = req.params.shortUrl
-//     shortUrlModel.findOne({ shortUrl })
-//     .lean()
-//     .then(result => {
-//         if (result) res.redirect(result.oriUrl)
-//     })
-//     .catch(err => console.log(err))
+router.get('/:shortUrl', (req, res) => {
+    const shortUrl = req.params.shortUrl
+    shortUrlModel.findOne({ shortUrl })
+    .lean()
+    .then(result => {
+        if (result) res.redirect(result.oriUrl)
+    })
+    .catch(err => console.log(err))
 
-// })
+})
 
 module.exports = router
