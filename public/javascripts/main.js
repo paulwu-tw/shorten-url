@@ -9,7 +9,7 @@ panel.addEventListener('click', (event) => {
     const target = event.target;
     if (target.id === 'copy-btn') {
         // get shorten url
-        const shortenUrl = document.querySelector('#shortUrl').value
+        const shortenUrl = document.querySelector('#shorten-link').textContent
         // copy to clipboard
         navigator.clipboard.writeText(shortenUrl)
         // change tooltip title

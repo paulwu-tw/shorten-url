@@ -19,9 +19,10 @@ main {
     width: 800px;
 }
 
-/* #show-msg {
-    color: #ffffff;
-} */
+#shorten-link {
+    /* text-align: center; */
+    color: blue
+}
 
 .custom-tooltip {
     --bs-tooltip-bg: var(--bs-secondary);
