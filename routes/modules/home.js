@@ -35,6 +35,7 @@ router.get('/:shortUrl', (req, res) => {
     .lean()
     .then(result => {
         if (result) res.redirect(result.oriUrl)
+        else res.render('errPage', { err: 'This short url is not exist.' })
     })
     .catch(err => res.render('errPage', { err }))
 

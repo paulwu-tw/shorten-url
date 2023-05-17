@@ -15,6 +15,15 @@ main {
     margin-top: 100px;
 }
 
+#err-panel {
+    text-align: center;
+}
+
+.err-msg {
+    color: rgb(149, 12, 12);
+    padding: 3rem;
+}
+
 .input-group {
     width: 800px;
 }
