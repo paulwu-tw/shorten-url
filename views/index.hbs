@@ -1,8 +1,6 @@
 {{#if shortUrl}}
 <div class="input-group" id="panel">
     <a id="shorten-link" class="form-control" href="{{shortUrl}}" target="_blank">{{shortUrl}}</a>
-    {{!-- <input id="shortUrl" class="form-control" type="text" placeholder="www.google.com" name="shortenUrl"
-        value="{{shortUrl}}" required disabled> --}}
     <button id="copy-btn" class="btn btn-success" type="submit" 
         data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-custom-class="custom-tooltip"
@@ -13,7 +11,7 @@
 {{else}}
 <form action="/" method="POST">
     <div class="input-group" id="panel">
-        <input class="form-control" type="text" placeholder="www.google.com" name="oriUrl" required>
+        <input class="form-control" type="url" placeholder="www.google.com" name="oriUrl" required>
         <button class="btn btn-success" type="submit">Shorten</button>
     </div>
 </form>

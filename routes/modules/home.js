@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
             }
             shortUrl = serverUrl + '/' + shortUrl
             res.render('index', { shortUrl })
-        }).catch(err => console.log(err))
+        }).catch(err => res.render('errPage', { err }))
 
 })
 
@@ -36,7 +36,7 @@ router.get('/:shortUrl', (req, res) => {
     .then(result => {
         if (result) res.redirect(result.oriUrl)
     })
-    .catch(err => console.log(err))
+    .catch(err => res.render('errPage', { err }))
 
 })
 
