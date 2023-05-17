@@ -15,14 +15,14 @@ main {
     margin-top: 100px;
 }
 
-/* .input-group {
+.input-group {
     width: 800px;
 }
 
-#show-msg {
+/* #show-msg {
     color: #ffffff;
-}
+} */
 
 .custom-tooltip {
     --bs-tooltip-bg: var(--bs-secondary);
-} */
+}

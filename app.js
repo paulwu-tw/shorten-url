@@ -1,8 +1,8 @@
 const express = require('express')
 const hbs = require('express-handlebars')
+require('./config/mongoose')
 
 const routes = require('./routes')
-
 
 const app = express()
 const port = process.env.PORT || 3000
