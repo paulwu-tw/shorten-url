@@ -1,5 +1,5 @@
 const express = require('express')
-const { model } = require('mongoose')
+// const { model } = require('mongoose')
 const router = express.Router()
 
 const home = require('./modules/home')

@@ -16,14 +16,16 @@ router.post('/', (req, res) => {
     shortUrlModel.findOne({ oriUrl })
         .lean()
         .then(isExist => {
-            if (isExist) shortUrl = isExist.shortUrl
-            else {
+            if (isExist) {
+                shortUrl = isExist.shortUrl
+                res.render('index', { shortUrl: serverUrl + '/' + shortUrl })
+            } else {
                 shortUrl = shorten.shorten()
                 shortUrlModel.create({ oriUrl, shortUrl })
-                    .catch(err => console.log(err))
+                    .then(() => {
+                        res.render('index', { shortUrl: serverUrl + '/' + shortUrl })
+                    }).catch(err => res.render('errPage', { err }))
             }
-            shortUrl = serverUrl + '/' + shortUrl
-            res.render('index', { shortUrl })
         }).catch(err => res.render('errPage', { err }))
 
 })
@@ -32,12 +34,12 @@ router.post('/', (req, res) => {
 router.get('/:shortUrl', (req, res) => {
     const shortUrl = req.params.shortUrl
     shortUrlModel.findOne({ shortUrl })
-    .lean()
-    .then(result => {
-        if (result) res.redirect(result.oriUrl)
-        else res.render('errPage', { err: 'This short url is not exist.' })
-    })
-    .catch(err => res.render('errPage', { err }))
+        .lean()
+        .then(result => {
+            if (result) res.redirect(result.oriUrl)
+            else res.render('errPage', { err: 'This short url is not exist.' })
+        })
+        .catch(err => res.render('errPage', { err }))
 
 })
 
